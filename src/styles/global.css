@@ -1,0 +1,384 @@
+/* ==========================================================================
+   Design tokens — mirrors the Pencil design variables 1:1.
+   Change a value here and it updates everywhere on the page.
+   ========================================================================== */
+:root {
+  /* colors */
+  --accent: #FF9800;
+  --surface: #FCFAF7;
+  --surface-inverse: #000000;
+  --text-primary: #000000;
+  --text-secondary: #666666;
+  --text-inverse: #FFFFFF;
+  --text-inverse-secondary: #B3B3B3;
+  --border-subtle: #EEEEEE;
+
+  /* fonts */
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-caption: "IBM Plex Mono", ui-monospace, monospace;
+  --font-heading: "Playfair Display", serif; /* reserved in the design, not used yet */
+
+  /* type scale */
+  --size-title: 34px;
+  --size-heading: 20px;
+  --size-body: 15px;
+  --size-caption: 12px;
+  --size-fine: 11px;
+
+  /* spacing */
+  --section-gap: 72px;
+  --column-width: 680px;
+  --page-padding-top: 96px;
+  --page-padding-bottom: 72px;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--surface);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: 1.7;
+}
+
+main {
+  /* 680px content column + side padding (padding only matters on small screens) */
+  max-width: calc(var(--column-width) + 2 * 24px);
+  margin: 0 auto;
+  padding: var(--page-padding-top) 24px var(--page-padding-bottom);
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+h1 {
+  font-size: var(--size-title);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+h2 {
+  font-size: var(--size-heading);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.muted {
+  color: var(--text-secondary);
+}
+
+.caption {
+  font-family: var(--font-caption);
+  font-size: var(--size-caption);
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   Header / about
+   ========================================================================== */
+.about {
+  gap: 16px;
+}
+
+.psst {
+  font-family: var(--font-caption);
+  font-size: var(--size-caption);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Projects
+   ========================================================================== */
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ==========================================================================
+   Work
+   ========================================================================== */
+.work-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.work-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.work-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.work-company {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.work-role {
+  color: var(--text-secondary);
+  margin-left: 8px;
+  font-weight: 400;
+}
+
+.work-dates {
+  font-family: var(--font-caption);
+  font-size: var(--size-caption);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Research
+   ========================================================================== */
+.paper-line {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Writing
+   ========================================================================== */
+.post-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+}
+
+.post-date {
+  font-family: var(--font-caption);
+  font-size: var(--size-caption);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Prints
+   ========================================================================== */
+.photo-strip {
+  display: flex;
+  gap: 10px;
+}
+
+.photo-strip img {
+  width: 220px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* ==========================================================================
+   Kind words
+   ========================================================================== */
+.kind-words {
+  gap: 16px;
+}
+
+blockquote {
+  border-left: 2px solid var(--accent);
+  padding: 2px 0 2px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+blockquote p {
+  font-style: italic;
+}
+
+/* ==========================================================================
+   Resume
+   ========================================================================== */
+.resume-line {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.footer-rule {
+  border: none;
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+.plane-landing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.trail-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.landed-plane {
+  width: 16px;
+  height: 16px;
+  color: var(--text-primary);
+}
+
+.plane-caption {
+  font-family: var(--font-caption);
+  font-size: var(--size-fine);
+  color: var(--text-secondary);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.copyright {
+  font-family: var(--font-caption);
+  font-size: var(--size-fine);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.hidden-playlist {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-caption);
+  font-size: var(--size-fine);
+  color: var(--text-secondary);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.hidden-playlist.found {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hidden-playlist .music-icon {
+  width: 13px;
+  height: 13px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.hidden-playlist a {
+  color: inherit;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Paper plane easter egg (flies when you click the psst line)
+   ========================================================================== */
+.flying-plane {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  color: var(--text-primary);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.trail-dot-flight {
+  position: fixed;
+  display: block;
+  z-index: 9;
+  pointer-events: none;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-12deg); }
+  75% { transform: rotate(12deg); }
+}
+
+.landed-plane.wiggle {
+  animation: wiggle 0.5s ease 2;
+}
+
+/* ==========================================================================
+   Small screens
+   ========================================================================== */
+@media (max-width: 560px) {
+  :root {
+    --page-padding-top: 64px;
+    --section-gap: 56px;
+    --size-title: 28px;
+  }
+
+  .work-header {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .photo-strip {
+    flex-direction: column;
+  }
+
+  .photo-strip img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 22 / 15;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .copyright,
+  .hidden-playlist a {
+    white-space: normal;
+  }
+}

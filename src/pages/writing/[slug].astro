@@ -1,0 +1,62 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('writing');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formatDate = (date: Date) =>
+  date
+    .toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
+    .toLowerCase();
+---
+
+<Base title={post.data.title}>
+  <main class="post">
+    <p><a href="/">← back home</a></p>
+    <section>
+      <h1>{post.data.title}</h1>
+      <p class="caption">{formatDate(post.data.date)}</p>
+    </section>
+    <article class="prose">
+      <Content />
+    </article>
+  </main>
+</Base>
+
+<style>
+  .post {
+    gap: 40px;
+  }
+
+  .post h1 {
+    font-size: 26px;
+  }
+
+  .prose :global(p + p) {
+    margin-top: 1em;
+  }
+
+  .prose :global(h2),
+  .prose :global(h3) {
+    margin: 1.5em 0 0.5em;
+  }
+
+  .prose :global(img) {
+    max-width: 100%;
+    border-radius: 4px;
+  }
+
+  .prose :global(code) {
+    font-family: var(--font-caption);
+    font-size: 13px;
+    background: var(--border-subtle);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+</style>

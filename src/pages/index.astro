@@ -1,0 +1,308 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { site, projects, work, research, prints, quotes, resume, footer } from '../data/site';
+
+const posts = (await getCollection('writing', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const formatDate = (date: Date) =>
+  date
+    .toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })
+    .toLowerCase();
+---
+
+<Base title={site.title} description={site.description}>
+  <main>
+    <!-- ===== about ===== -->
+    <section class="about">
+      <h1>{site.title}</h1>
+      <p>
+        i'm a curious engineer who likes making things — software, half-baked research, words on
+        the internet, and a slowly growing shelf of 3d prints. right now i spend most days building
+        small tools that make other builders faster.
+      </p>
+      <p>
+        when i'm not writing code i'm usually writing sentences, taking things apart to see how
+        they work, or coaxing my printer through yet another nine-hour print that will fail at hour
+        eight.
+      </p>
+      <p>
+        find me on <a href={site.twitter}>twitter</a>, <a href={site.linkedin}>linkedin</a>, and
+        <a href={site.github}>github</a>, or just <a href={`mailto:${site.email}`}>email me</a> — i
+        actually reply.
+      </p>
+      <p class="psst" id="psst" title="click me">
+        psst — there's a paper plane and a hidden playlist somewhere on this page ♪
+      </p>
+    </section>
+
+    <!-- ===== projects ===== -->
+    <section>
+      <h2>things i've built</h2>
+      <div class="project-list">
+        {
+          projects.map((project) => (
+            <p>
+              <a href={project.href}>{project.name}</a>
+              <span class="muted"> {project.description}</span>
+            </p>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ===== work ===== -->
+    <section>
+      <h2>places i've worked</h2>
+      <div class="work-list">
+        {
+          work.map((entry) => (
+            <div class="work-entry">
+              <div class="work-header">
+                <p>
+                  {
+                    entry.href ? (
+                      <a class="work-company" href={entry.href}>
+                        {entry.company}
+                      </a>
+                    ) : (
+                      <span class="work-company">{entry.company}</span>
+                    )
+                  }
+                  <span class="work-role">{entry.role}</span>
+                </p>
+                <span class="work-dates">{entry.dates}</span>
+              </div>
+              <p class="muted">{entry.learnings}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ===== research ===== -->
+    <section>
+      <h2>{research.heading}</h2>
+      <p class="paper-line">
+        <a href={research.href}>{research.title}</a>
+        <span class="caption">{research.venue}</span>
+      </p>
+      <p>{research.blurb}</p>
+    </section>
+
+    <!-- ===== writing ===== -->
+    <section>
+      <h2>writing</h2>
+      <p class="muted">no schedule, only curiosity. some things i've written down:</p>
+      {
+        posts.map((post) => (
+          <p class="post-row">
+            <a href={`/writing/${post.id}/`}>{post.data.title}</a>
+            <span class="post-date">{formatDate(post.data.date)}</span>
+          </p>
+        ))
+      }
+    </section>
+
+    <!-- ===== prints ===== -->
+    {/* hidden for now — bring back once the photos are sorted
+    <section>
+      <h2>cool stuff i've 3d printed</h2>
+      <p class="muted">{prints.intro}</p>
+      <div class="photo-strip">
+        {prints.photos.map((photo) => <img src={photo.src} alt={photo.alt} loading="lazy" />)}
+      </div>
+      <p class="caption">{prints.caption}</p>
+    </section>
+    */}
+
+    <!-- ===== kind words ===== -->
+    {/* hidden for now — needs real quotes
+    <section class="kind-words">
+      <h2>kind words</h2>
+      {
+        quotes.map((quote) => (
+          <blockquote>
+            <p>{quote.text}</p>
+            <footer class="caption">{quote.attribution}</footer>
+          </blockquote>
+        ))
+      }
+    </section>
+    */}
+
+    <!-- ===== resume ===== -->
+    {/* hidden for now — waiting on the pdf
+    <section>
+      <h2>resume</h2>
+      <p class="resume-line">
+        want the full story on one page?
+        <a href={resume.viewHref} target="_blank">view my resume</a>
+        or
+        <a href={resume.downloadHref} download>grab the pdf</a>
+      </p>
+      <p class="caption">{resume.meta}</p>
+    </section>
+    */}
+
+    <!-- ===== footer ===== -->
+    <footer>
+      <hr class="footer-rule" />
+      <div class="plane-landing" id="plane-landing">
+        {Array.from({ length: 8 }).map(() => <span class="trail-dot"></span>)}
+        <svg
+          class="landed-plane"
+          id="landed-plane"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="m22 2-7 20-4-9-9-4Z"></path>
+          <path d="M22 2 11 13"></path>
+        </svg>
+        <span class="plane-caption">the paper plane lands here</span>
+      </div>
+      <div class="footer-bottom">
+        <span class="copyright">{footer.copyright}</span>
+        <span class="hidden-playlist" id="hidden-playlist">
+          <svg
+            class="music-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M9 18V5l12-2v13"></path>
+            <circle cx="6" cy="18" r="3"></circle>
+            <circle cx="18" cy="16" r="3"></circle>
+          </svg>
+          <a href={footer.playlistHref}>{footer.playlistText}</a>
+        </span>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Easter egg 1: the hidden playlist fades in once you reach the footer.
+    const playlist = document.getElementById('hidden-playlist');
+    if (playlist) {
+      new IntersectionObserver(
+        (entries, observer) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            playlist.classList.add('found');
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.9 }
+      ).observe(playlist);
+    }
+
+    // Easter egg 2: click the psst line and a paper plane glides down to the
+    // footer, leaving a fading dot trail, and lands on its spot in the footer.
+    const psst = document.getElementById('psst');
+    const landing = document.getElementById('landed-plane');
+    let flying = false;
+
+    const easeInOut = (t: number) => (t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2);
+
+    const dropDot = (x: number, y: number) => {
+      const dot = document.createElement('span');
+      dot.className = 'trail-dot trail-dot-flight';
+      dot.style.left = `${x + 8}px`;
+      dot.style.top = `${y + 8}px`;
+      document.body.appendChild(dot);
+      dot
+        .animate([{ opacity: 0.7 }, { opacity: 0 }], { duration: 900, fill: 'forwards' })
+        .onfinish = () => dot.remove();
+    };
+
+    psst?.addEventListener('click', () => {
+      if (flying || !landing) return;
+      flying = true;
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        landing.scrollIntoView({ block: 'center' });
+        flying = false;
+        return;
+      }
+
+      // Predict where the landing spot sits in the viewport once the smooth
+      // scroll settles, and fly there in viewport space (the plane is fixed).
+      const rect = landing.getBoundingClientRect();
+      const absY = rect.top + window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const finalScroll = Math.min(
+        maxScroll,
+        Math.max(0, absY + rect.height / 2 - window.innerHeight / 2)
+      );
+      const tx = rect.left;
+      const ty = absY - finalScroll;
+      const start = psst.getBoundingClientRect();
+      const sx = start.left;
+      const sy = start.top;
+
+      const plane = landing.cloneNode(true) as SVGElement;
+      plane.removeAttribute('id');
+      plane.classList.remove('landed-plane');
+      plane.classList.add('flying-plane');
+      plane.style.left = `${sx}px`;
+      plane.style.top = `${sy}px`;
+      document.body.appendChild(plane);
+      landing.style.visibility = 'hidden';
+      landing.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      const duration = 2600;
+      const sway = Math.min(160, window.innerWidth * 0.12);
+      let startTime: number | null = null;
+      let px = sx;
+      let py = sy;
+      let angle = 0;
+      let lastDot = 0;
+
+      const step = (now: number) => {
+        if (startTime === null) startTime = now;
+        const t = Math.min(1, (now - startTime) / duration);
+
+        // lazy S-curve: eased descent + sideways sway that dies out near landing
+        const x = sx + (tx - sx) * t + Math.sin(t * Math.PI * 3) * sway * (1 - t);
+        const y = sy + (ty - sy) * easeInOut(t);
+
+        // aim the nose along the direction of travel
+        // (the send icon points north-east, hence the +45° offset)
+        if (x !== px || y !== py) {
+          const heading = (Math.atan2(y - py, x - px) * 180) / Math.PI + 45;
+          const diff = ((heading - angle + 540) % 360) - 180;
+          angle += diff * 0.15;
+        }
+        plane.style.transform = `translate(${x - sx}px, ${y - sy}px) rotate(${angle}deg)`;
+
+        if (now - lastDot > 120 && t < 0.92) {
+          dropDot(x, y);
+          lastDot = now;
+        }
+        px = x;
+        py = y;
+
+        if (t < 1) {
+          requestAnimationFrame(step);
+        } else {
+          plane.remove();
+          landing.style.visibility = '';
+          landing.classList.add('wiggle');
+          setTimeout(() => landing.classList.remove('wiggle'), 1200);
+          flying = false;
+        }
+      };
+      requestAnimationFrame(step);
+    });
+  </script>
+</Base>
