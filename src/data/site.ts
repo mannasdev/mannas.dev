@@ -33,6 +33,12 @@ export const projects = [
     description:
       '— lints robot-training datasets for dead joints, frozen cameras, and encoder bugs before you burn gpu-hours on bad data',
   },
+  {
+    name: 'legal-bge-in',
+    href: 'https://huggingface.co/Mannas/legal-bge-in',
+    description:
+      "— a bge embedding model fine-tuned on indian supreme court and delhi hc judgments, so a lawyer's question lands near the case that actually answers it",
+  },
 ];
 
 export const work = [
