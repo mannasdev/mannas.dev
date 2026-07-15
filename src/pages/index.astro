@@ -21,7 +21,7 @@ const formatDate = (date: Date) =>
     <section class="about">
       <h1>{site.title}</h1>
       <p>
-        i'm a curious engineer who likes making things — software, half-baked research, words on
+        i'm a curious engineer who likes making things: software, half-baked research, words on
         the internet, and a slowly growing shelf of 3d prints. right now i spend most days building
         small tools that make other builders faster.
       </p>
@@ -32,11 +32,10 @@ const formatDate = (date: Date) =>
       </p>
       <p>
         find me on <a href={site.twitter}>twitter</a>, <a href={site.linkedin}>linkedin</a>, and
-        <a href={site.github}>github</a>, or just <a href={`mailto:${site.email}`}>email me</a> — i
-        actually reply.
+        <a href={site.github}>github</a>, or just <a href={`mailto:${site.email}`}>email me</a>.
       </p>
       <p class="psst" id="psst" title="click me">
-        psst — there's a paper plane and a hidden playlist somewhere on this page ♪
+        psst, there's a paper plane and a hidden playlist somewhere on this page ♪
       </p>
     </section>
 
@@ -99,7 +98,7 @@ const formatDate = (date: Date) =>
       SHOW_WRITING && (
         <section>
           <h2>writing</h2>
-          <p class="muted">no schedule, only curiosity. some things i've written down:</p>
+          <p class="muted">some things i've written down:</p>
           {posts.map((post) => (
             <p class="post-row">
               <a href={`/writing/${post.id}/`}>{post.data.title}</a>
@@ -111,7 +110,7 @@ const formatDate = (date: Date) =>
     }
 
     <!-- ===== prints ===== -->
-    {/* hidden for now — bring back once the photos are sorted
+    {/* hidden for now, bring back once the photos are sorted
     <section>
       <h2>cool stuff i've 3d printed</h2>
       <p class="muted">{prints.intro}</p>
@@ -123,7 +122,7 @@ const formatDate = (date: Date) =>
     */}
 
     <!-- ===== kind words ===== -->
-    {/* hidden for now — needs real quotes
+    {/* hidden for now, needs real quotes
     <section class="kind-words">
       <h2>kind words</h2>
       {
@@ -138,7 +137,7 @@ const formatDate = (date: Date) =>
     */}
 
     <!-- ===== resume ===== -->
-    {/* hidden for now — waiting on the pdf
+    {/* hidden for now, waiting on the pdf
     <section>
       <h2>resume</h2>
       <p class="resume-line">
