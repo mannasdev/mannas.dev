@@ -39,6 +39,12 @@ export const projects = [
     description:
       "— a bge embedding model fine-tuned on indian supreme court and delhi hc judgments, so a lawyer's question lands near the case that actually answers it",
   },
+  {
+    name: 'tetris-world-model',
+    href: 'https://github.com/mannasdev/tetris-world-model',
+    description:
+      '— a tetris agent that learns to play entirely inside its own imagination: it builds a world model of the game, then trains by dreaming instead of touching the real one',
+  },
 ];
 
 export const work = [
