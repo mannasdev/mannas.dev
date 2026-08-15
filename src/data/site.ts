@@ -16,6 +16,18 @@ export const site = {
 
 export const projects = [
   {
+    name: 'hudson',
+    href: 'https://tryhudson.email',
+    description:
+      "· a calm, keyboard-first email client for mac: archive, snooze and reply without leaving the keys, ai drafts replies in your voice on your own key, and your mail never leaves your machine",
+  },
+  {
+    name: 'noflake',
+    href: 'https://trynoflake.com',
+    description:
+      '· browser tests written in plain english that stop flaking: it pins the interpretation on the first run, so the same test checks the same things forever and every verdict ships with receipts',
+  },
+  {
     name: 'glim',
     href: 'https://github.com/mannasdev/glim',
     description:
