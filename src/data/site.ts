@@ -8,7 +8,7 @@ export const site = {
   title: "hi, i'm mannas 👋",
   description:
     'curious engineer making things: software, half-baked research, words on the internet, and 3d prints.',
-  email: 'mannas@lawsmos.com',
+  email: 'me@mannas.dev',
   twitter: 'https://twitter.com/mannaswtf',
   linkedin: 'https://www.linkedin.com/in/mannasnarang/',
   github: 'https://github.com/mannasdev',
