@@ -61,6 +61,12 @@ export const projects = [
 
 export const work = [
   {
+    company: 'ploid (yc s24)',
+    href: 'https://ploid.com',
+    role: 'member of technical staff',
+    dates: 'aug 2026 to current',
+  },
+  {
     company: 'wander',
     href: 'https://wander.com',
     role: 'product engineer ii',

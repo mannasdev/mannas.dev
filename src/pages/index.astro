@@ -76,7 +76,7 @@ const formatDate = (date: Date) =>
                 </p>
                 <span class="work-dates">{entry.dates}</span>
               </div>
-              <p class="muted">{entry.learnings}</p>
+              {entry.learnings && <p class="muted">{entry.learnings}</p>}
             </div>
           ))
         }
